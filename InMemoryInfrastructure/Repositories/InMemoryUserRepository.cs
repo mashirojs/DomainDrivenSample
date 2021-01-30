@@ -2,6 +2,7 @@
 using System.Linq;
 using Domain.Models.Users;
 using Domain.Shared;
+using InMemoryInfrastructure.Models;
 
 namespace InMemoryInfrastructure.Repositories
 {
@@ -63,11 +64,5 @@ namespace InMemoryInfrastructure.Repositories
         {
             return new User(new UserId(user.Id), new UserName(user.Name));
         }
-    }
-
-    internal class UserData
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
     }
 }

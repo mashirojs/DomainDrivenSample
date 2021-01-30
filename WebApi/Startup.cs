@@ -1,4 +1,5 @@
 using Application.Users.Commands;
+using Domain.Models.Circles;
 using Domain.Models.Users;
 using Domain.Services;
 using InMemoryInfrastructure;
@@ -28,10 +29,14 @@ namespace WebApi
             services.AddMediatR(typeof(Startup));
             services.AddMediatR(typeof(UserGetCommand));
 
-            services.AddTransient<IUserFactory, UserFactory>();
-            services.AddTransient<IUserRepository, InMemoryUserRepository>();
-            services.AddSingleton<InMemoryDataStore>();
+            services.AddSingleton<IUserFactory, UserFactory>();
+            services.AddSingleton<IUserRepository, InMemoryUserRepository>();
             services.AddSingleton<UserService>();
+            services.AddSingleton<ICircleFactory, CircleFactory>();
+            services.AddSingleton<ICircleRepository, InMemoryCircleRepository>();
+            services.AddSingleton<CircleService>();
+
+            services.AddSingleton<InMemoryDataStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -23,9 +23,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<UserIndexResponseModel> Index([FromQuery] UserIndexRequestModel request)
+        public async Task<UserIndexResponseModel> Index()
         {
-            var result = await _mediator.Send(new UserGetListCommand(request.Page, request.DisplayCount, request.Search));
+            var result = await _mediator.Send(new UserGetListCommand());
             var users = result.Users.Select(x => new UserResponseModel(x)).ToList();
             return new UserIndexResponseModel(users);
         }

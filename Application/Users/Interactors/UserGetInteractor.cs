@@ -22,7 +22,7 @@ namespace Application.Users.Interactors
             var result = _userRepository.Find(new UserId(command.Id));
             if (result is null)
             {
-                throw new UserNotFoundException($"ID: { command.Id } のユーザーが見つかりませんでした。");
+                throw new UserNotFoundException($"IDが { command.Id } のユーザーが見つかりませんでした。");
             }
 
             var user = new UserData(result.Id.Value, result.Name.Value);

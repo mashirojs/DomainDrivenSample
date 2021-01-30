@@ -19,11 +19,9 @@ namespace Application.Users.Interactors
 
         public Task<UserGetListOutputData> Handle(UserGetListCommand command, CancellationToken cancellationToken)
         {
-            var result = _userRepository.Find(new UserListSpecification(command.Search))
-                .Skip((command.Page - 1) * command.DisplayCount)
-                .Take(command.DisplayCount)
+            var users = _userRepository.FindAll()
+                .Select(x => new UserData(x.Id.Value, x.Name.Value))
                 .ToList();
-            var users = result.Select(x => new UserData(x.Id.Value, x.Name.Value));
             return Task.FromResult(new UserGetListOutputData(users));
         }
     }
